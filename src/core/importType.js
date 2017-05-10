@@ -27,9 +27,19 @@ function isExternalModule(name, settings, path) {
   return externalModuleRegExp.test(name) && isExternalPath(path, name, settings)
 }
 
+const externalModuleMainRegExp = /^[\w]((?!\/).)*$/
+export function isExternalModuleMain(name, settings, path) {
+  return externalModuleMainRegExp.test(name) && isExternalPath(path, name, settings)
+}
+
 const scopedRegExp = /^@\w+\/\w+/
 function isScoped(name) {
   return scopedRegExp.test(name)
+}
+
+const scopedMainRegExp = /^@[^\/]+\/?[^\/]+$/
+export function isScopedMain(name) {
+  return scopedMainRegExp.test(name)
 }
 
 function isInternalModule(name, settings, path) {
